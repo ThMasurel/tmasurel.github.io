@@ -5,8 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Thibaud</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script>
+        // Debug: show loading screen info
+        window.addEventListener('load', () => {
+            const loading = document.getElementById('loading-screen');
+            console.log('Loading screen element:', loading);
+            console.log('Loading screen styles:', window.getComputedStyle(loading));
+        });
+    </script>
 </head>
-<body>
+<body class="loading">
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="loader-text">Thibaud</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <div class="loader-hint">Cliquez pour passer</div>
+        </div>
+    </div>
+
+
     <header>
         <nav>
             <div class="nav-container">
@@ -15,6 +35,13 @@
                     <li><a href="#about">À propos</a></li>
                     <li><a href="#projects">Projets</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="cv_thibaud_masurel.pdf" target="_blank" class="cv-download">📄 CV</a></li>
+                    <li>
+                        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                            <span class="sun-icon">☀️</span>
+                            <span class="moon-icon">🌙</span>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -34,16 +61,20 @@
                 <h2>À propos de moi</h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>Développeur passionné avec une expertise en...</p>
-                        <p>Mes compétences incluent...</p>
+                        <p>Développeur passionné par les technologies backend et l'optimisation d'algorithmes. Spécialisé en Go avec une forte expérience dans le développement d'applications web et la résolution de problèmes complexes.</p>
+                        <p>Formé à Zone01, je développe des solutions robustes et performantes en mettant l'accent sur la qualité du code et l'architecture logicielle.</p>
                     </div>
                     <div class="skills">
                         <h3>Technologies</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Go</span>
-                            <span class="skill-tag">JavaScript</span>
                             <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">HTTP Servers</span>
+                            <span class="skill-tag">API REST</span>
+                            <span class="skill-tag">Algorithms</span>
                             <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Docker</span>
                         </div>
                     </div>
                 </div>
@@ -53,115 +84,79 @@
         <section id="projects">
             <div class="container">
                 <h2>Mes Projets</h2>
+                
+                <div class="filter-container">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Tous</button>
+                        <button class="filter-btn" data-filter="go">Go</button>
+                        <button class="filter-btn" data-filter="web">Web</button>
+                        <button class="filter-btn" data-filter="api">API</button>
+                        <button class="filter-btn" data-filter="algorithms">Algorithmes</button>
+                    </div>
+                </div>
+                
                 <div class="projects-grid">
                     
-                    <div class="project-card">
+                    <div class="project-card" data-category="go web api">
                         <div class="project-image">
-                            <div class="placeholder-image">Image du projet</div>
+                            <div class="placeholder-image">🎵</div>
                         </div>
                         <div class="project-content">
-                            <h3>Nom du Projet 1</h3>
-                            <p>Description du projet à compléter...</p>
+                            <h3>Groupie Tracker</h3>
+                            <p>Application web de découverte d'artistes musicaux avec système de recherche avancée, design vintage inspiré des vinyles et consommation d'API REST.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Go</span>
-                                <span class="tech-tag">HTML</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="project-link">Code</a>
-                                <a href="#" class="project-link">Demo</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="placeholder-image">Image du projet</div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Nom du Projet 2</h3>
-                            <p>Description du projet à compléter...</p>
-                            <div class="project-tech">
+                                <span class="tech-tag">HTML/CSS</span>
                                 <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">API REST</span>
                             </div>
                             <div class="project-links">
-                                <a href="#" class="project-link">Code</a>
+                                <a href="https://github.com/ThMasurel/groupie-tracker" class="project-link">Code</a>
                                 <a href="#" class="project-link">Demo</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="project-card">
+                    <div class="project-card" data-category="go web">
                         <div class="project-image">
-                            <div class="placeholder-image">Image du projet</div>
+                            <div class="placeholder-image">🎨</div>
                         </div>
                         <div class="project-content">
-                            <h3>Nom du Projet 3</h3>
-                            <p>Description du projet à compléter...</p>
+                            <h3>ASCII Art Web</h3>
+                            <p>Convertisseur de texte en art ASCII avec interface web responsive. Propose 4 styles de polices différents avec preview temps réel et téléchargement.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Go</span>
-                                <span class="tech-tag">Algorithmes</span>
+                                <span class="tech-tag">HTML/CSS</span>
+                                <span class="tech-tag">HTTP Server</span>
+                                <span class="tech-tag">Templates</span>
                             </div>
                             <div class="project-links">
-                                <a href="#" class="project-link">Code</a>
+                                <a href="https://github.com/ThMasurel/ascii-art-web" class="project-link">Code</a>
                                 <a href="#" class="project-link">Demo</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="project-card">
+                    <div class="project-card" data-category="go algorithms">
                         <div class="project-image">
-                            <div class="placeholder-image">Image du projet</div>
+                            <div class="placeholder-image">🐜</div>
                         </div>
                         <div class="project-content">
-                            <h3>Nom du Projet 4</h3>
-                            <p>Description du projet à compléter...</p>
+                            <h3>Lem-in</h3>
+                            <p>Algorithme de pathfinding pour optimiser le déplacement de fourmis dans un réseau de salles connectées. Implémentation d'algorithmes de recherche de chemin optimal.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Go</span>
-                                <span class="tech-tag">TCP</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="project-link">Code</a>
-                                <a href="#" class="project-link">Demo</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="placeholder-image">Image du projet</div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Nom du Projet 5</h3>
-                            <p>Description du projet à compléter...</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Go</span>
-                                <span class="tech-tag">API</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="project-link">Code</a>
-                                <a href="#" class="project-link">Demo</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="placeholder-image">Image du projet</div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Nom du Projet 6</h3>
-                            <p>Description du projet à compléter...</p>
-                            <div class="project-tech">
                                 <span class="tech-tag">Algorithms</span>
-                                <span class="tech-tag">Optimization</span>
+                                <span class="tech-tag">Pathfinding</span>
+                                <span class="tech-tag">Graph Theory</span>
                             </div>
                             <div class="project-links">
-                                <a href="#" class="project-link">Code</a>
+                                <a href="https://github.com/ThMasurel/lem-in" class="project-link">Code</a>
                                 <a href="#" class="project-link">Demo</a>
                             </div>
                         </div>
                     </div>
+
 
                 </div>
             </div>
@@ -173,9 +168,9 @@
                 <div class="contact-content">
                     <p>Vous souhaitez collaborer ou en savoir plus ?</p>
                     <div class="contact-links">
-                        <a href="mailto:votre.email@example.com" class="contact-link">Email</a>
-                        <a href="#" class="contact-link">LinkedIn</a>
-                        <a href="#" class="contact-link">GitHub</a>
+                        <a href="mailto:thibaud.masurel@gmail.com" class="contact-link">Email</a>
+                        <a href="https://www.linkedin.com/in/thibaud-masurel-90b960380/" class="contact-link">LinkedIn</a>
+                        <a href="https://github.com/ThMasurel" class="contact-link">GitHub</a>
                     </div>
                 </div>
             </div>

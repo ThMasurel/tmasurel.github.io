@@ -1,0 +1,29 @@
+{
+  "name": "portfolio-thibaud-masurel",
+  "version": "1.0.0",
+  "description": "Portfolio et CV de Thibaud Masurel - Développeur Full-Stack",
+  "main": "index.html",
+  "scripts": {
+    "generate-cv": "node generate_cv_pdf.js",
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "portfolio",
+    "cv",
+    "developer",
+    "go",
+    "javascript",
+    "web"
+  ],
+  "author": "Thibaud Masurel",
+  "license": "MIT",
+  "devDependencies": {
+    "puppeteer": "^21.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThMasurel/tmasurel.github.io"
+  },
+  "homepage": "https://thmasurel.github.io"
+}
