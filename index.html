@@ -15,33 +15,19 @@
         });
     </script>
 </head>
-<body class="loading">
-    <div id="loading-screen">
-        <div class="loader">
-            <div class="loader-text">Thibaud</div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
-            </div>
-            <div class="loader-hint">Cliquez pour passer</div>
-        </div>
-    </div>
+<body>
 
 
     <header>
         <nav>
             <div class="nav-container">
-                <h1 class="logo">Thibaud</h1>
+                <h1 class="logo">Thibaud Masurel</h1>
                 <ul class="nav-menu">
                     <li><a href="#about">À propos</a></li>
-                    <li><a href="#projects">Projets</a></li>
+                    <li><a href="#formation">Formation</a></li>
+                    <li><a href="#projects">Portfolio</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="cv_thibaud_masurel.pdf" target="_blank" class="cv-download">📄 CV</a></li>
-                    <li>
-                        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                            <span class="sun-icon">☀️</span>
-                            <span class="moon-icon">🌙</span>
-                        </button>
-                    </li>
+                    <li><a href="cv_thibaud_masurel.pdf" target="_blank" class="cv-link">CV</a></li>
                 </ul>
             </div>
         </nav>
@@ -49,10 +35,14 @@
 
     <main>
         <section id="hero">
+            <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h2>Développeur Full-Stack</h2>
-                <p>Passionné par la création d'applications web modernes et performantes</p>
-                <a href="#projects" class="cta-button">Voir mes projets</a>
+                <div class="hero-text">
+                    <h1>Vous cherchez un développeur web ?</h1>
+                    <h2>Parfait !</h2>
+                    <p>Étudiant en formation chez Zone01, à la recherhe d'une alternance.<br>Spécialisé en GO et développement web moderne</p>
+                    <a href="#about" class="cta-button">En savoir plus</a>
+                </div>
             </div>
         </section>
 
@@ -61,8 +51,8 @@
                 <h2>À propos de moi</h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>Développeur passionné par les technologies backend et l'optimisation d'algorithmes. Spécialisé en Go avec une forte expérience dans le développement d'applications web et la résolution de problèmes complexes.</p>
-                        <p>Formé à Zone01, je développe des solutions robustes et performantes en mettant l'accent sur la qualité du code et l'architecture logicielle.</p>
+                        <p>Ancien éducateur sportif en reconversion, passionné par les technologies backend et l'optimisation d'algorithmes. Spécialisé en Go avec de l'expérience dans le développement d'applications web et la résolution de problèmes complexes.</p>
+                        <p>En formation à Zone01, je développe des solutions robustes et performantes en mettant l'accent sur la qualité du code et l'architecture logicielle.</p>
                     </div>
                     <div class="skills">
                         <h3>Technologies</h3>
@@ -72,6 +62,7 @@
                             <span class="skill-tag">JavaScript</span>
                             <span class="skill-tag">HTTP Servers</span>
                             <span class="skill-tag">API REST</span>
+                            <span class="skill-tag">SQL</span>
                             <span class="skill-tag">Algorithms</span>
                             <span class="skill-tag">Git</span>
                             <span class="skill-tag">Docker</span>
@@ -81,19 +72,54 @@
             </div>
         </section>
 
+        <section id="formation">
+            <div class="container">
+                <h2>Formation</h2>
+                
+                <div class="formation-timeline">
+                    <div class="formation-item">
+                        <div class="formation-date">Depuis mai 2025</div>
+                        <div class="formation-content">
+                            <h3>Développeur web</h3>
+                            <p class="formation-school">Zone 01, Rouen</p>
+                            <p class="formation-description">Formation intensive en développement web et algorithmique, spécialisée en Go et technologies modernes.</p>
+                        </div>
+                    </div>
+
+                    <div class="formation-item">
+                        <div class="formation-date">Février 2023</div>
+                        <div class="formation-content">
+                            <h3>Formation BAFD</h3>
+                            <p class="formation-school">AROEVEN Nantes et l'UFCV, Nantes</p>
+                            <p class="formation-description">Brevet d'Aptitude aux Fonctions de Directeur en accueils collectifs de mineurs.</p>
+                        </div>
+                    </div>
+
+                    <div class="formation-item">
+                        <div class="formation-date">Mars 2021</div>
+                        <div class="formation-content">
+                            <h3>Formation Sport Santé</h3>
+                            <p class="formation-school">CREPS, Nantes</p>
+                            <p class="formation-description">Formation spécialisée dans l'encadrement sportif adapté aux problématiques de santé.</p>
+                        </div>
+                    </div>
+
+                    <div class="formation-item">
+                        <div class="formation-date">Septembre 2017 - Juin 2018</div>
+                        <div class="formation-content">
+                            <h3>BPJEPS APT (Alternance)</h3>
+                            <p class="formation-school">IRSS, Nantes</p>
+                            <p class="formation-description">Brevet Professionnel de la Jeunesse, de l'Éducation Populaire et du Sport - Activités Physiques pour Tous, réalisé en alternance.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <section id="projects">
             <div class="container">
-                <h2>Mes Projets</h2>
-                
-                <div class="filter-container">
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">Tous</button>
-                        <button class="filter-btn" data-filter="go">Go</button>
-                        <button class="filter-btn" data-filter="web">Web</button>
-                        <button class="filter-btn" data-filter="api">API</button>
-                        <button class="filter-btn" data-filter="algorithms">Algorithmes</button>
-                    </div>
-                </div>
+                <h2>Portfolio</h2>
                 
                 <div class="projects-grid">
                     
@@ -123,7 +149,7 @@
                         </div>
                         <div class="project-content">
                             <h3>ASCII Art Web</h3>
-                            <p>Convertisseur de texte en art ASCII avec interface web responsive. Propose 4 styles de polices différents avec preview temps réel et téléchargement.</p>
+                            <p>Convertisseur de texte en art ASCII avec interface web responsive. Propose 4 styles de polices différents avec preview temps réel et téléchargement.<br><br> </p>
                             <div class="project-tech">
                                 <span class="tech-tag">Go</span>
                                 <span class="tech-tag">HTML/CSS</span>

@@ -224,27 +224,6 @@ document.addEventListener('DOMContentLoaded', function() {
         hero.style.transform = `translateY(${parallax}px)`;
     });
 
-    // ===== TYPING EFFECT FOR HERO TEXT =====
-    const heroTitle = document.querySelector('#hero h2');
-    const originalText = heroTitle.textContent;
-    
-    function typeWriter() {
-        heroTitle.textContent = '';
-        let i = 0;
-        
-        function type() {
-            if (i < originalText.length) {
-                heroTitle.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(type, 100);
-            }
-        }
-        
-        setTimeout(type, 1000);
-    }
-    
-    // Start typing effect after loading
-    setTimeout(typeWriter, 2500);
 
     // ===== PROJECT FILTER SYSTEM =====
     console.log('Setting up project filter system...');
