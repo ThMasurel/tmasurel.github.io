@@ -787,8 +787,25 @@ footer {
     }
     
     .demo-popup {
-        max-height: 50vh;
-        overflow-y: auto;
+        height: auto;
+        max-height: none;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .demo-popup-content {
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .demo-popup-header {
+        flex-shrink: 0;
+    }
+    
+    .demo-description {
+        display: none;
     }
     
     .nav-menu {
@@ -1029,12 +1046,29 @@ footer {
     .demo-popup {
         width: 95%;
         max-width: 95vw;
-        max-height: 60vh;
+        height: auto;
+        max-height: none;
         margin: 0;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        overflow-y: auto;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .demo-popup-content {
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .demo-popup-header {
+        flex-shrink: 0;
+    }
+    
+    .demo-description {
+        display: none;
     }
     
     .demo-popup-header {
