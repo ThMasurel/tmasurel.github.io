@@ -1071,6 +1071,10 @@ footer {
         display: none;
     }
     
+    .cta-button {
+        display: none;
+    }
+    
     .demo-popup-header {
         padding: 20px;
     }
