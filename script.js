@@ -425,16 +425,24 @@ const projectsData = {
         description: 'Application web de découverte d\'artistes musicaux avec système de recherche avancée et design vintage inspiré des vinyles. Interface responsive avec consommation d\'API REST pour afficher les informations des artistes, leurs albums et dates de concerts.',
         images: [
             {
-                src: 'images/groupie-tracker.png',
+                src: 'images/groupie-tracker-1.png',
                 alt: 'Interface principale Groupie Tracker'
             },
             {
-                src: 'images/groupie-tracker.png',
-                alt: 'Page de recherche'
+                src: 'images/groupie-tracker-2.png',
+                alt: 'Page de recherche d\'artistes'
             },
             {
-                src: 'images/groupie-tracker.png',
-                alt: 'Détails artiste'
+                src: 'images/groupie-tracker-3.png',
+                alt: 'Détails d\'un artiste'
+            },
+            {
+                src: 'images/groupie-tracker-4.png',
+                alt: 'Liste des concerts et dates'
+            },
+            {
+                src: 'images/groupie-tracker-5.png',
+                alt: 'Interface responsive mobile'
             }
         ]
     },
@@ -473,12 +481,8 @@ const projectsData = {
                 alt: 'Visualisation du réseau Lem-in'
             },
             {
-                src: 'images/lem-in.png',
-                alt: 'Algorithme en action'
-            },
-            {
-                src: 'images/lem-in.png',
-                alt: 'Résultats optimisation'
+                src: 'images/lem-in-1.png',
+                alt: 'Algorithme de pathfinding en action'
             }
         ]
     }
