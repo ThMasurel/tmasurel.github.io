@@ -665,27 +665,29 @@ class PhotoDigitalizer {
         
         this.isDigitalizing = true;
         
-        // Étape 1: Glitch effect
-        this.container.classList.add('glitching');
+        // Étape 1: Glitch effect plus subtil
+        this.container.classList.add('decomposing');
         
-        setTimeout(() => {
-            // Étape 2: Digitalizing
-            this.container.classList.remove('glitching');
-            this.container.classList.add('digitalizing');
-            this.startMatrixEffect();
-            
+        // Transition progressive avec RequestAnimationFrame pour fluidité
+        requestAnimationFrame(() => {
             setTimeout(() => {
-                // Étape 3: Générer l'ASCII art
-                this.generateAsciiArt();
+                // Étape 2: Début de digitalisation
+                this.container.classList.remove('decomposing');
+                this.container.classList.add('digitalizing');
+                this.startMatrixEffect();
                 
+                // Générer l'ASCII art progressivement
                 setTimeout(() => {
-                    // Étape 4: État final digitalisé
-                    this.container.classList.remove('digitalizing');
-                    this.container.classList.add('digitalized');
-                }, 1000);
+                    this.generateAsciiArt();
+                }, 600);
                 
-            }, 1500);
-        }, 800);
+                // Transition finale plus douce
+                setTimeout(() => {
+                    this.container.classList.add('digitalized');
+                }, 1800);
+                
+            }, 400); // Réduit le délai initial
+        });
     }
     
     resetToNormal() {
@@ -719,7 +721,7 @@ class PhotoDigitalizer {
             }, 3000);
         };
         
-        this.matrixInterval = setInterval(createChar, 100);
+        this.matrixInterval = setInterval(createChar, 80); // Plus fréquent pour fluidité
     }
     
     stopMatrixEffect() {
