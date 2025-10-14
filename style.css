@@ -957,8 +957,12 @@ footer {
 @media (max-width: 768px) {
     .demo-popup {
         width: 95%;
+        max-width: 95vw;
         max-height: 95vh;
-        margin: 20px;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
     
     .demo-popup-header {
@@ -1005,7 +1009,12 @@ footer {
 @media (max-width: 480px) {
     .demo-popup {
         width: 98%;
-        max-height: 98vh;
+        max-width: 98vw;
+        max-height: 95vh;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
     
     .demo-main-image {
