@@ -1065,7 +1065,7 @@ footer {
 
 .about-photo-container {
     position: sticky;
-    top: 100px;
+    top: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
