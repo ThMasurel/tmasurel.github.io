@@ -7,10 +7,10 @@ Portfolio personnel moderne avec CV téléchargeable et système de filtrage int
 ### 🎨 Interface & Design
 - **Mode sombre/clair** avec toggle animé
 - **Animations fluides** (scroll reveal, hover effects)
-- **Curseur personnalisé** avec effets interactifs
+- **Photo de profil** agrandie et optimalement positionnée
 - **Loading screen** avec animation
 - **Smooth scrolling** entre sections
-- **Particules d'arrière-plan** animées
+- **Design responsive** avec sticky positioning
 
 ### 🔍 Interactivité
 - **Système de filtrage** des projets par technologie
@@ -43,18 +43,9 @@ git clone https://github.com/ThMasurel/portfolio.git
 cd portfolio
 ```
 
-2. **Lancer le serveur local**
-```bash
-# Option 1: Python
-python3 -m http.server 8000
-
-# Option 2: Node.js
-npm start
+2. **Voir le portfolio en ligne**
 ```
-
-3. **Ouvrir dans le navigateur**
-```
-http://localhost:8000
+https://thmasurel.github.io
 ```
 
 ### Génération du CV PDF
