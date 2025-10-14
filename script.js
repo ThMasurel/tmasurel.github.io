@@ -405,3 +405,196 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ===== DEMO POPUPS =====
+const demoPopup = document.getElementById('demo-popup');
+const demoOverlay = document.getElementById('demo-overlay');
+const demoClose = document.getElementById('demo-close');
+const demoTitle = document.getElementById('demo-title');
+const demoMainImg = document.getElementById('demo-main-img');
+const demoThumbnails = document.querySelector('.demo-thumbnails');
+const demoCounter = document.getElementById('demo-counter');
+const demoDesc = document.getElementById('demo-desc');
+const demoPrevBtn = document.getElementById('demo-prev');
+const demoNextBtn = document.getElementById('demo-next');
+
+// Données des projets avec leurs images
+const projectsData = {
+    'groupie-tracker': {
+        title: 'Groupie Tracker',
+        description: 'Application web de découverte d\'artistes musicaux avec système de recherche avancée et design vintage inspiré des vinyles. Interface responsive avec consommation d\'API REST pour afficher les informations des artistes, leurs albums et dates de concerts.',
+        images: [
+            {
+                src: 'images/groupie-tracker.png',
+                alt: 'Interface principale Groupie Tracker'
+            },
+            {
+                src: 'images/groupie-tracker.png',
+                alt: 'Page de recherche'
+            },
+            {
+                src: 'images/groupie-tracker.png',
+                alt: 'Détails artiste'
+            }
+        ]
+    },
+    'ascii-art': {
+        title: 'ASCII Art Web',
+        description: 'Convertisseur de texte en art ASCII avec interface web moderne. Propose 3 styles de polices différents (standard, shadow, thinkertoy) avec preview en temps réel, sélection de couleurs et téléchargement du résultat. Backend développé en Go avec serveur HTTP.',
+        images: [
+            {
+                src: 'images/ascii-art-1.png',
+                alt: 'Interface principale ASCII Art Web'
+            },
+            {
+                src: 'images/ascii-art-2.png',
+                alt: 'Génération avec différents styles'
+            },
+            {
+                src: 'images/ascii-art-3.png',
+                alt: 'Sélection de couleurs'
+            },
+            {
+                src: 'images/ascii-art-4.png',
+                alt: 'Résultat avec style shadow'
+            },
+            {
+                src: 'images/ascii-art-5.png',
+                alt: 'Export et téléchargement'
+            }
+        ]
+    },
+    'lem-in': {
+        title: 'Lem-in',
+        description: 'Algorithme de pathfinding avancé pour optimiser le déplacement de fourmis dans un réseau complexe de salles connectées. Implémentation d\'algorithmes de recherche de chemin optimal avec visualisation du réseau et des flux. Projet focalisé sur les performances et la théorie des graphes.',
+        images: [
+            {
+                src: 'images/lem-in.png',
+                alt: 'Visualisation du réseau Lem-in'
+            },
+            {
+                src: 'images/lem-in.png',
+                alt: 'Algorithme en action'
+            },
+            {
+                src: 'images/lem-in.png',
+                alt: 'Résultats optimisation'
+            }
+        ]
+    }
+};
+
+let currentProject = null;
+let currentImageIndex = 0;
+
+// Gestion des clics sur les liens Demo
+document.querySelectorAll('.demo-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const projectId = link.getAttribute('data-project');
+        openDemoPopup(projectId);
+    });
+});
+
+// Fonction pour ouvrir le popup
+function openDemoPopup(projectId) {
+    currentProject = projectsData[projectId];
+    currentImageIndex = 0;
+    
+    if (!currentProject) return;
+    
+    // Mettre à jour le contenu
+    demoTitle.textContent = currentProject.title;
+    demoDesc.textContent = currentProject.description;
+    
+    // Créer les thumbnails
+    demoThumbnails.innerHTML = '';
+    currentProject.images.forEach((image, index) => {
+        const thumb = document.createElement('div');
+        thumb.className = `demo-thumbnail ${index === 0 ? 'active' : ''}`;
+        thumb.innerHTML = `<img src="${image.src}" alt="${image.alt}">`;
+        thumb.addEventListener('click', () => showImage(index));
+        demoThumbnails.appendChild(thumb);
+    });
+    
+    // Afficher la première image
+    showImage(0);
+    
+    // Ouvrir le popup
+    demoOverlay.classList.add('active');
+    demoPopup.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Fonction pour afficher une image
+function showImage(index) {
+    if (!currentProject || index < 0 || index >= currentProject.images.length) return;
+    
+    currentImageIndex = index;
+    const image = currentProject.images[index];
+    
+    // Mettre à jour l'image principale
+    demoMainImg.src = image.src;
+    demoMainImg.alt = image.alt;
+    
+    // Mettre à jour les thumbnails
+    document.querySelectorAll('.demo-thumbnail').forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === index);
+    });
+    
+    // Mettre à jour le compteur
+    demoCounter.textContent = `${index + 1} / ${currentProject.images.length}`;
+    
+    // Mettre à jour les boutons navigation
+    demoPrevBtn.disabled = index === 0;
+    demoNextBtn.disabled = index === currentProject.images.length - 1;
+}
+
+// Fonction pour fermer le popup
+function closeDemoPopup() {
+    demoOverlay.classList.remove('active');
+    demoPopup.classList.remove('active');
+    document.body.style.overflow = '';
+    currentProject = null;
+    currentImageIndex = 0;
+}
+
+// Event listeners pour fermer le popup
+demoClose.addEventListener('click', closeDemoPopup);
+demoOverlay.addEventListener('click', closeDemoPopup);
+
+// Navigation avec les boutons
+demoPrevBtn.addEventListener('click', () => {
+    if (currentImageIndex > 0) {
+        showImage(currentImageIndex - 1);
+    }
+});
+
+demoNextBtn.addEventListener('click', () => {
+    if (currentImageIndex < currentProject.images.length - 1) {
+        showImage(currentImageIndex + 1);
+    }
+});
+
+// Navigation avec le clavier
+document.addEventListener('keydown', (e) => {
+    if (!demoPopup.classList.contains('active')) return;
+    
+    switch(e.key) {
+        case 'Escape':
+            closeDemoPopup();
+            break;
+        case 'ArrowLeft':
+            if (currentImageIndex > 0) {
+                showImage(currentImageIndex - 1);
+            }
+            break;
+        case 'ArrowRight':
+            if (currentImageIndex < currentProject.images.length - 1) {
+                showImage(currentImageIndex + 1);
+            }
+            break;
+    }
+});
+
+console.log('Demo popups system loaded!');

@@ -1,13 +1,28 @@
+/* ===================================================================
+   PORTFOLIO THIBAUD MASUREL - STYLESHEET
+   Style inspiré du portfolio de Karim Bouzgarne
+   Design moderne, minimaliste avec animations subtiles
+=================================================================== */
+
+/* ===================================================================
+   1. VARIABLES CSS & CONFIGURATION GLOBALE
+=================================================================== */
+
 :root {
+    /* Couleurs principales */
     --bg-primary: #ffffff;
     --bg-secondary: #f8f9fa;
     --text-primary: #2c3e50;
     --text-secondary: #7f8c8d;
     --accent-primary: #f05f40;
     --accent-secondary: #e74c3c;
+    
+    /* Ombres */
     --shadow-light: 0 2px 15px rgba(0,0,0,0.08);
     --shadow-medium: 0 4px 25px rgba(0,0,0,0.1);
     --shadow-heavy: 0 8px 40px rgba(0,0,0,0.12);
+    
+    /* Styles génériques */
     --border-radius: 8px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -24,6 +39,10 @@
     --shadow-heavy: 0 10px 30px rgba(0,0,0,0.4);
 }
 
+
+/* ===================================================================
+   2. RESET & BASE STYLES
+=================================================================== */
 
 * {
     margin: 0;
@@ -45,7 +64,6 @@ body {
     font-weight: 400;
 }
 
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -53,8 +71,10 @@ body {
 }
 
 
+/* ===================================================================
+   3. HEADER & NAVIGATION
+=================================================================== */
 
-/* Header */
 header {
     background: rgba(255,255,255,0.95);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
@@ -120,41 +140,10 @@ header {
 }
 
 
-/* Scroll Reveal Animation */
-.reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.6s ease;
-}
+/* ===================================================================
+   4. HERO SECTION
+=================================================================== */
 
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.reveal-left {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: all 0.6s ease;
-}
-
-.reveal-left.active {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.reveal-right {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.6s ease;
-}
-
-.reveal-right.active {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Hero Section */
 #hero {
     background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), 
                       url('https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
@@ -233,7 +222,11 @@ header {
     transform: translateY(-2px);
 }
 
-/* Sections */
+
+/* ===================================================================
+   5. SECTIONS GÉNÉRALES
+=================================================================== */
+
 section {
     padding: 100px 0;
     position: relative;
@@ -259,7 +252,11 @@ section h2::after {
     background: var(--accent-primary);
 }
 
-/* About Section */
+
+/* ===================================================================
+   6. SECTION À PROPOS
+=================================================================== */
+
 #about {
     background: var(--bg-primary);
     transition: var(--transition);
@@ -320,7 +317,11 @@ section h2::after {
     box-shadow: var(--shadow-medium);
 }
 
-/* Formation Section */
+
+/* ===================================================================
+   7. SECTION FORMATION
+=================================================================== */
+
 #formation {
     background: var(--bg-secondary);
     transition: var(--transition);
@@ -414,38 +415,11 @@ section h2::after {
     font-size: 0.95rem;
 }
 
-/* Mobile responsive for formation */
-@media (max-width: 768px) {
-    .formation-timeline::before {
-        left: 20px;
-    }
-    
-    .formation-item {
-        flex-direction: column !important;
-        align-items: flex-start;
-        padding-left: 50px;
-    }
-    
-    .formation-item::before {
-        left: 20px;
-        transform: translateX(-50%);
-    }
-    
-    .formation-date {
-        flex: none;
-        padding: 0 0 10px 0;
-        text-align: left;
-        font-size: 0.85rem;
-    }
-    
-    .formation-content {
-        flex: none;
-        width: 100%;
-        padding: 20px;
-    }
-}
 
-/* Projects Section */
+/* ===================================================================
+   8. SECTION PROJETS/PORTFOLIO
+=================================================================== */
+
 #projects {
     background: var(--bg-primary);
     transition: var(--transition);
@@ -551,7 +525,11 @@ section h2::after {
     color: white;
 }
 
-/* Contact Section */
+
+/* ===================================================================
+   9. SECTION CONTACT
+=================================================================== */
+
 #contact {
     background: var(--bg-primary);
     text-align: center;
@@ -592,7 +570,11 @@ section h2::after {
     transform: translateY(-2px);
 }
 
-/* Footer */
+
+/* ===================================================================
+   10. FOOTER
+=================================================================== */
+
 footer {
     background: var(--text-primary);
     color: var(--bg-primary);
@@ -601,18 +583,82 @@ footer {
     transition: var(--transition);
 }
 
-/* Responsive Design */
+
+/* ===================================================================
+   11. ANIMATIONS & EFFETS
+=================================================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.6s ease;
+}
+
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.6s ease;
+}
+
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* ===================================================================
+   12. RESPONSIVE DESIGN
+=================================================================== */
+
+/* Tablettes et mobiles (≤ 768px) */
 @media (max-width: 768px) {
+    /* Header responsive */
     .nav-container {
         flex-direction: column;
         height: auto;
-        padding: 20px;
+        padding: 15px 20px;
+        text-align: center;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
     }
     
     .nav-menu {
-        margin-top: 20px;
+        margin-top: 0;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
+    .nav-menu a {
+        padding: 8px 0;
+        font-size: 0.95rem;
+    }
+    
+    .cv-link {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    /* Hero responsive */
     #hero {
         padding: 120px 0 80px;
         margin-top: 120px;
@@ -622,6 +668,7 @@ footer {
         font-size: 2rem;
     }
     
+    /* Sections générales */
     .about-content {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -635,9 +682,57 @@ footer {
         flex-direction: column;
         align-items: center;
     }
+    
+    /* Formation timeline mobile */
+    .formation-timeline::before {
+        left: 20px;
+    }
+    
+    .formation-item {
+        flex-direction: column !important;
+        align-items: flex-start;
+        padding-left: 50px;
+    }
+    
+    .formation-item::before {
+        left: 20px;
+        transform: translateX(-50%);
+    }
+    
+    .formation-date {
+        flex: none;
+        padding: 0 0 10px 0;
+        text-align: left;
+        font-size: 0.85rem;
+    }
+    
+    .formation-content {
+        flex: none;
+        width: 100%;
+        padding: 20px;
+    }
 }
 
+/* Petits mobiles (≤ 480px) */
 @media (max-width: 480px) {
+    /* Navigation ultra compacte */
+    .nav-container {
+        padding: 10px 15px;
+    }
+    
+    .nav-menu {
+        gap: 15px;
+    }
+    
+    .nav-menu a {
+        font-size: 0.9rem;
+    }
+    
+    /* Hero ultra responsive */
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
     .hero-content h2 {
         font-size: 1.8rem;
     }
@@ -646,6 +741,7 @@ footer {
         font-size: 1.1rem;
     }
     
+    /* Sections */
     section h2 {
         font-size: 2rem;
     }
@@ -653,5 +749,307 @@ footer {
     .project-card {
         margin: 0 10px;
     }
-    
 }
+
+
+/* ===================================================================
+   14. DEMO POPUPS
+=================================================================== */
+
+/* Overlay sombre */
+.demo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.demo-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Popup principal */
+.demo-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    background: var(--bg-primary);
+    border-radius: 15px;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-heavy);
+    overflow: hidden;
+}
+
+.demo-popup.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Header du popup */
+.demo-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background: var(--bg-secondary);
+}
+
+.demo-popup-header h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.demo-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+    transition: var(--transition);
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.demo-close:hover {
+    background: rgba(0,0,0,0.1);
+    color: var(--text-primary);
+}
+
+/* Contenu de la galerie */
+.demo-gallery {
+    padding: 30px;
+}
+
+.demo-main-image {
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.demo-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Thumbnails */
+.demo-thumbnails {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.demo-thumbnail {
+    width: 80px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    opacity: 0.7;
+}
+
+.demo-thumbnail:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.demo-thumbnail.active {
+    border-color: var(--accent-primary);
+    opacity: 1;
+}
+
+.demo-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Navigation */
+.demo-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px 20px 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.demo-nav-btn {
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+    min-width: 120px;
+}
+
+.demo-nav-btn:hover {
+    background: var(--accent-secondary);
+    transform: translateY(-2px);
+}
+
+.demo-nav-btn:disabled {
+    background: var(--text-secondary);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.demo-counter {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 10px 20px;
+    background: var(--bg-secondary);
+    border-radius: 20px;
+}
+
+/* Description */
+.demo-description {
+    padding: 25px 30px;
+    background: var(--bg-secondary);
+}
+
+.demo-description p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Responsive pour popups */
+@media (max-width: 768px) {
+    .demo-popup {
+        width: 95%;
+        max-height: 95vh;
+        margin: 20px;
+    }
+    
+    .demo-popup-header {
+        padding: 20px;
+    }
+    
+    .demo-popup-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .demo-gallery {
+        padding: 20px;
+    }
+    
+    .demo-main-image {
+        height: 250px;
+    }
+    
+    .demo-navigation {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .demo-nav-btn {
+        min-width: 100px;
+        padding: 8px 16px;
+    }
+    
+    .demo-description {
+        padding: 20px;
+    }
+    
+    .demo-thumbnails {
+        gap: 10px;
+    }
+    
+    .demo-thumbnail {
+        width: 60px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .demo-popup {
+        width: 98%;
+        max-height: 98vh;
+    }
+    
+    .demo-main-image {
+        height: 200px;
+    }
+    
+    .demo-popup-header {
+        padding: 15px;
+    }
+    
+    .demo-gallery {
+        padding: 15px;
+    }
+    
+    .demo-navigation {
+        padding: 15px;
+    }
+    
+    .demo-description {
+        padding: 15px;
+    }
+}
+
+/* Animations d'entrée */
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===================================================================
+   FIN DU FICHIER CSS
+=================================================================== */

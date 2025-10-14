@@ -138,7 +138,7 @@
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/ThMasurel/groupie-tracker" class="project-link">Code</a>
-                                <a href="#" class="project-link">Demo</a>
+                                <a href="#" class="project-link demo-link" data-project="groupie-tracker">Demo</a>
                             </div>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/ThMasurel/ascii-art-web" class="project-link">Code</a>
-                                <a href="#" class="project-link">Demo</a>
+                                <a href="#" class="project-link demo-link" data-project="ascii-art">Demo</a>
                             </div>
                         </div>
                     </div>
@@ -178,7 +178,7 @@
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/ThMasurel/lem-in" class="project-link">Code</a>
-                                <a href="#" class="project-link">Demo</a>
+                                <a href="#" class="project-link demo-link" data-project="lem-in">Demo</a>
                             </div>
                         </div>
                     </div>
@@ -208,5 +208,32 @@
             <p>&copy; 2024 Thibaud. Tous droits réservés.</p>
         </div>
     </footer>
+
+    <!-- Demo Popups -->
+    <div id="demo-popup" class="demo-popup">
+        <div class="demo-popup-content">
+            <div class="demo-popup-header">
+                <h3 id="demo-title">Titre du Projet</h3>
+                <button id="demo-close" class="demo-close">&times;</button>
+            </div>
+            <div class="demo-gallery">
+                <div class="demo-main-image">
+                    <img id="demo-main-img" src="" alt="Screenshot principal" />
+                </div>
+                <div class="demo-thumbnails">
+                    <!-- Les thumbnails seront ajoutées dynamiquement -->
+                </div>
+            </div>
+            <div class="demo-navigation">
+                <button id="demo-prev" class="demo-nav-btn">‹ Précédent</button>
+                <span id="demo-counter" class="demo-counter">1 / 3</span>
+                <button id="demo-next" class="demo-nav-btn">Suivant ›</button>
+            </div>
+            <div class="demo-description">
+                <p id="demo-desc">Description du projet...</p>
+            </div>
+        </div>
+    </div>
+    <div id="demo-overlay" class="demo-overlay"></div>
 </body>
 </html>
