@@ -531,6 +531,7 @@ function openDemoPopup(projectId) {
     demoOverlay.classList.add('active');
     demoPopup.classList.add('active');
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
 }
 
 // Fonction pour afficher une image
@@ -562,6 +563,7 @@ function closeDemoPopup() {
     demoOverlay.classList.remove('active');
     demoPopup.classList.remove('active');
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
     currentProject = null;
     currentImageIndex = 0;
 }
