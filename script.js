@@ -216,13 +216,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== PARALLAX EFFECT FOR HERO =====
     const hero = document.getElementById('hero');
+    const isMobile = window.innerWidth <= 768;
     
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallax = scrolled * 0.5;
-        
-        hero.style.transform = `translateY(${parallax}px)`;
-    });
+    if (!isMobile) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            
+            hero.style.transform = `translateY(${parallax}px)`;
+        });
+    }
 
 
     // ===== PROJECT FILTER SYSTEM =====
