@@ -1051,5 +1051,233 @@ footer {
 }
 
 /* ===================================================================
+   15. PHOTO DIGITALIZER EFFECT
+=================================================================== */
+
+/* Layout de la section About */
+.about-content {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 50px;
+    align-items: start;
+    margin-top: 50px;
+}
+
+.about-photo-container {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+.photo-digitalizer {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-heavy);
+    transition: all 0.5s ease;
+}
+
+.photo-digitalizer:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+}
+
+/* Photo principale */
+#profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+/* Canvas ASCII (invisible au départ) */
+.ascii-canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    opacity: 0;
+    background: #000;
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+    font-size: 4px;
+    transition: opacity 0.8s ease;
+}
+
+/* Overlay avec effet digital/matrix */
+.digital-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    opacity: 0;
+    background: linear-gradient(45deg, transparent 49%, rgba(0,255,0,0.03) 50%, transparent 51%);
+    background-size: 4px 4px;
+    transition: all 0.8s ease;
+    pointer-events: none;
+}
+
+.matrix-chars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.matrix-char {
+    position: absolute;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    opacity: 0;
+    animation: matrix-fall 2s linear infinite;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+@keyframes matrix-fall {
+    0% {
+        opacity: 1;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(320px);
+    }
+}
+
+/* États de transformation */
+.photo-digitalizer.digitalizing #profile-photo {
+    filter: contrast(1.2) brightness(0.8) hue-rotate(90deg);
+    opacity: 0.7;
+}
+
+.photo-digitalizer.digitalizing .digital-overlay {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.photo-digitalizer.digitalized #profile-photo {
+    opacity: 0.1;
+    filter: blur(2px) contrast(2) brightness(0.3);
+}
+
+.photo-digitalizer.digitalized .ascii-canvas {
+    opacity: 1;
+}
+
+.photo-digitalizer.digitalized .digital-overlay {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Animation de pixels qui se décomposent */
+@keyframes pixel-decompose {
+    0% { clip-path: inset(0 0 0 0); }
+    25% { clip-path: inset(0 0 25% 0); }
+    50% { clip-path: inset(0 25% 50% 0); }
+    75% { clip-path: inset(25% 50% 75% 0); }
+    100% { clip-path: inset(50% 75% 100% 25%); }
+}
+
+.photo-digitalizer.decomposing #profile-photo {
+    animation: pixel-decompose 2s ease-in-out;
+}
+
+/* Effet glitch */
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+.photo-digitalizer.glitching #profile-photo {
+    animation: glitch 0.3s ease-in-out infinite;
+}
+
+/* Section info à droite */
+.about-info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.about-text {
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 1024px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .about-photo-container {
+        position: relative;
+        top: 0;
+        justify-content: center;
+        order: 1;
+    }
+    
+    .about-info {
+        order: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .photo-digitalizer {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .about-content {
+        gap: 30px;
+    }
+    
+    .about-text p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-digitalizer {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .matrix-char {
+        font-size: 10px;
+    }
+    
+    .ascii-canvas {
+        font-size: 3px;
+    }
+}
+
+/* ===================================================================
    FIN DU FICHIER CSS
 =================================================================== */

@@ -602,3 +602,215 @@ document.addEventListener('keydown', (e) => {
 });
 
 console.log('Demo popups system loaded!');
+
+// ===== PHOTO DIGITALIZER EFFECT =====
+class PhotoDigitalizer {
+    constructor() {
+        this.container = document.getElementById('photo-digitalizer');
+        this.photo = document.getElementById('profile-photo');
+        this.canvas = document.getElementById('ascii-canvas');
+        this.matrixChars = document.querySelector('.matrix-chars');
+        
+        if (!this.container || !this.photo || !this.canvas) return;
+        
+        this.ctx = this.canvas.getContext('2d');
+        this.isDigitalizing = false;
+        this.matrixInterval = null;
+        
+        this.init();
+    }
+    
+    init() {
+        // Configurer le canvas
+        this.canvas.width = 300;
+        this.canvas.height = 300;
+        
+        // Observer de scroll pour déclencher l'effet
+        this.setupScrollObserver();
+        
+        // Événements de survol pour effets supplémentaires
+        this.container.addEventListener('mouseenter', () => {
+            if (!this.isDigitalizing) {
+                this.startMatrixEffect();
+            }
+        });
+        
+        this.container.addEventListener('mouseleave', () => {
+            this.stopMatrixEffect();
+        });
+        
+        console.log('Photo digitalizer initialized!');
+    }
+    
+    setupScrollObserver() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+                    setTimeout(() => {
+                        this.startDigitalization();
+                    }, 500);
+                } else if (!entry.isIntersecting) {
+                    this.resetToNormal();
+                }
+            });
+        }, {
+            threshold: [0, 0.3, 0.7, 1]
+        });
+        
+        observer.observe(this.container);
+    }
+    
+    startDigitalization() {
+        if (this.isDigitalizing) return;
+        
+        this.isDigitalizing = true;
+        
+        // Étape 1: Glitch effect
+        this.container.classList.add('glitching');
+        
+        setTimeout(() => {
+            // Étape 2: Digitalizing
+            this.container.classList.remove('glitching');
+            this.container.classList.add('digitalizing');
+            this.startMatrixEffect();
+            
+            setTimeout(() => {
+                // Étape 3: Générer l'ASCII art
+                this.generateAsciiArt();
+                
+                setTimeout(() => {
+                    // Étape 4: État final digitalisé
+                    this.container.classList.remove('digitalizing');
+                    this.container.classList.add('digitalized');
+                }, 1000);
+                
+            }, 1500);
+        }, 800);
+    }
+    
+    resetToNormal() {
+        this.container.classList.remove('glitching', 'digitalizing', 'digitalized', 'decomposing');
+        this.stopMatrixEffect();
+        this.isDigitalizing = false;
+        
+        // Nettoyer le canvas
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+    
+    startMatrixEffect() {
+        this.stopMatrixEffect();
+        
+        const chars = '01010101THIBAUDMASUREL{}[]()<>+-*/=%$#@&GOJAVASCRIPTHTMLCSS';
+        
+        const createChar = () => {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = chars[Math.floor(Math.random() * chars.length)];
+            char.style.left = Math.random() * 280 + 'px';
+            char.style.animationDelay = Math.random() * 2 + 's';
+            char.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            
+            this.matrixChars.appendChild(char);
+            
+            setTimeout(() => {
+                if (char.parentNode) {
+                    char.parentNode.removeChild(char);
+                }
+            }, 3000);
+        };
+        
+        this.matrixInterval = setInterval(createChar, 100);
+    }
+    
+    stopMatrixEffect() {
+        if (this.matrixInterval) {
+            clearInterval(this.matrixInterval);
+            this.matrixInterval = null;
+        }
+        
+        // Nettoyer les caractères existants
+        while (this.matrixChars.firstChild) {
+            this.matrixChars.removeChild(this.matrixChars.firstChild);
+        }
+    }
+    
+    generateAsciiArt() {
+        // Créer une image temporaire pour analyser les pixels
+        const tempCanvas = document.createElement('canvas');
+        const tempCtx = tempCanvas.getContext('2d');
+        tempCanvas.width = 60;
+        tempCanvas.height = 60;
+        
+        // Attendre que l'image soit chargée
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+            // Dessiner l'image redimensionnée
+            tempCtx.drawImage(img, 0, 0, 60, 60);
+            
+            // Obtenir les données de pixels
+            const imageData = tempCtx.getImageData(0, 0, 60, 60);
+            const pixels = imageData.data;
+            
+            // Caractères ASCII par ordre de densité
+            const asciiChars = ' .,:;ox%#@';
+            
+            // Configurer le canvas principal
+            this.ctx.fillStyle = '#00ff00';
+            this.ctx.font = '5px Courier New';
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.fillStyle = '#000';
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.fillStyle = '#00ff00';
+            
+            // Convertir les pixels en ASCII
+            let asciiArt = '';
+            for (let y = 0; y < 60; y++) {
+                for (let x = 0; x < 60; x++) {
+                    const offset = (y * 60 + x) * 4;
+                    const r = pixels[offset];
+                    const g = pixels[offset + 1];
+                    const b = pixels[offset + 2];
+                    
+                    // Calculer la luminosité
+                    const brightness = (r + g + b) / 3;
+                    const charIndex = Math.floor((brightness / 255) * (asciiChars.length - 1));
+                    
+                    // Dessiner le caractère
+                    const char = asciiChars[charIndex] || ' ';
+                    this.ctx.fillText(char, x * 5, y * 5 + 5);
+                }
+            }
+            
+            // Ajouter quelques caractères spéciaux pour l'effet
+            this.addTechChars();
+        };
+        
+        img.src = this.photo.src;
+    }
+    
+    addTechChars() {
+        this.ctx.fillStyle = '#00ff41';
+        this.ctx.font = '8px Courier New';
+        
+        const techWords = ['GO', 'JS', 'HTML', 'CSS', '{dev}', '</>'];
+        
+        for (let i = 0; i < 6; i++) {
+            const word = techWords[Math.floor(Math.random() * techWords.length)];
+            const x = Math.random() * 250;
+            const y = Math.random() * 280 + 20;
+            this.ctx.fillText(word, x, y);
+        }
+    }
+}
+
+// Initialiser l'effet quand le DOM est chargé
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        new PhotoDigitalizer();
+    });
+} else {
+    new PhotoDigitalizer();
+}
+
+console.log('Photo digitalizer effect loaded!');
