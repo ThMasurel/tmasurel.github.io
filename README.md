@@ -1,22 +1,22 @@
 # 🌟 Portfolio - Thibaud Masurel
 
-Portfolio personnel moderne avec CV téléchargeable et système de filtrage interactif.
+Portfolio personnel d'étudiant Zone01 présentant mes projets en développement Go et web moderne.
 
 ## ✨ Fonctionnalités
 
 ### 🎨 Interface & Design
-- **Mode sombre/clair** avec toggle animé
+- **Section Hero** avec fond parallax et animation
+- **Section À propos** avec photo de profil repositionnée (500x400px)
+- **Timeline de formation** Zone01 avec design moderne
+- **Galerie de projets** avec démos popup interactives
 - **Animations fluides** (scroll reveal, hover effects)
-- **Photo de profil** agrandie et optimalement positionnée
-- **Loading screen** avec animation
-- **Smooth scrolling** entre sections
-- **Design responsive** avec sticky positioning
+- **Design responsive** optimisé mobile/desktop
 
-### 🔍 Interactivité
-- **Système de filtrage** des projets par technologie
-- **Animations staggered** pour les cartes
-- **Effets hover** avancés sur tous les éléments
-- **Easter egg** (code Konami !)
+### 🔍 Projets interactifs
+- **Popups de démo** avec galerie d'images navigable
+- **Navigation clavier** (flèches, Escape) 
+- **Thumbnails cliquables** pour chaque projet
+- **Descriptions détaillées** des fonctionnalités
 
 ### 📄 CV Téléchargeable
 - **CV HTML/CSS** optimisé pour l'impression
@@ -45,7 +45,7 @@ cd portfolio
 
 2. **Voir le portfolio en ligne**
 ```
-https://thmasurel.github.io
+https://thmasurel.github.io/tmasurel.github.io/
 ```
 
 ### Génération du CV PDF
@@ -75,28 +75,28 @@ portfolio/
 └── README.md          # Documentation
 ```
 
-## 🎯 Projets présentés
+## 🎯 Projets Zone01 présentés
 
 ### 🎵 Groupie Tracker
-Application web de découverte d'artistes musicaux avec :
-- Consommation d'API REST
-- Système de recherche avancée
-- Design vintage inspiré des vinyles
+Application web de découverte d'artistes musicaux avec design vintage :
+- **5 captures d'écran** dans la démo popup
+- Interface principale, recherche, détails artiste, concerts, responsive
+- Consommation d'API REST pour artistes et dates de concerts
 - **Technologies :** Go, HTML/CSS, JavaScript, API REST
 
-### 🎨 ASCII Art Web
-Convertisseur de texte en art ASCII avec :
-- Interface web responsive
-- 4 styles de polices différents
-- Téléchargement des créations
+### 🎨 ASCII Art Web  
+Convertisseur de texte en art ASCII avec interface moderne :
+- **5 captures d'écran** montrant les différents styles
+- 3 polices (standard, shadow, thinkertoy) avec préview temps réel
+- Sélection de couleurs et téléchargement du résultat
 - **Technologies :** Go, HTTP Server, Templates
 
 ### 🐜 Lem-in
-Algorithme de pathfinding pour fourmis avec :
-- Optimisation de déplacement
-- Analyse de graphes complexes
-- Parsing de fichiers de configuration
-- **Technologies :** Go, Algorithms, Graph Theory
+Algorithme de pathfinding avancé pour optimiser les fourmis :
+- **2 captures d'écran** de visualisation du réseau
+- Recherche de chemins optimaux dans des graphes complexes  
+- Algorithmes de flux et théorie des graphes
+- **Technologies :** Go, Algorithms, Pathfinding, Graph Theory
 
 ## 🎮 Fonctionnalités cachées
 
@@ -168,9 +168,9 @@ Automatiquement géré par les variables CSS avec `[data-theme="dark"]`.
 
 ## 📞 Contact
 
-- **Email** : thibaud.masurel@example.com
+- **Email** : thibaud.masurel@gmail.com
 - **GitHub** : [ThMasurel](https://github.com/ThMasurel)
-- **Portfolio** : [thmasurel.github.io](https://thmasurel.github.io)
+- **Portfolio** : [thmasurel.github.io](https://thmasurel.github.io/tmasurel.github.io/)
 
 ## 📄 License
 
