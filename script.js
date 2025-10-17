@@ -7,16 +7,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     
     function hideLoadingScreen() {
-        console.log('Hiding loading screen...');
-        
         if (loadingScreen) {
             loadingScreen.style.opacity = '0';
             loadingScreen.style.pointerEvents = 'none';
             body.classList.remove('loading');
-            
+
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
-                console.log('Loading screen hidden');
             }, 500);
         }
     }
@@ -32,14 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Loading screen will be handled by timeout above
 
     // ===== THEME TOGGLE =====
-    console.log('Setting up theme toggle...');
-    
     const themeToggle = document.getElementById('theme-toggle');
-    console.log('Theme toggle button:', themeToggle);
-    
+
     if (themeToggle) {
         const savedTheme = localStorage.getItem('theme') || 'light';
-        console.log('Saved theme:', savedTheme);
         
         // Apply saved theme
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -54,13 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         themeToggle.addEventListener('click', function() {
-            console.log('Theme button clicked!');
-            
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            console.log('Current theme:', currentTheme, '-> New theme:', newTheme);
-            
+
             // Apply theme change
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
@@ -80,13 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 themeToggle.style.transform = 'scale(1)';
             }, 150);
-            
-            console.log('Theme applied:', newTheme);
         });
-        
-        console.log('Theme toggle setup complete');
-    } else {
-        console.error('Theme toggle button not found!');
     }
 
     // ===== CUSTOM CURSOR - DISABLED =====
@@ -229,13 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // ===== PROJECT FILTER SYSTEM =====
-    console.log('Setting up project filter system...');
-    
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
-    
-    console.log('Found filter buttons:', filterButtons.length);
-    console.log('Found project cards:', projectCards.length);
     
     // Setup enhanced hover for project cards
     projectCards.forEach(card => {
@@ -253,12 +231,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     filterButtons.forEach((button, index) => {
-        console.log(`Button ${index}:`, button.getAttribute('data-filter'), button.classList.contains('active'));
-        
         button.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
-            console.log('Filter clicked:', filter);
-            
+
             // Update active button - force removal of active class
             filterButtons.forEach(btn => {
                 btn.classList.remove('active');
@@ -270,9 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('active');
             this.style.background = 'var(--accent-primary)';
             this.style.color = 'white';
-            
-            console.log('Active button updated to:', filter);
-            
+
             // Filter projects with staggered animation
             projectCards.forEach((card, cardIndex) => {
                 const categories = card.getAttribute('data-category').split(' ');
@@ -395,8 +368,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    console.log('🎉 Portfolio loaded successfully!');
-    console.log('💡 Try the Konami code for a surprise!');
 });
 
 // ===== CSS ANIMATION KEYFRAMES (added via JS) =====
@@ -507,13 +478,13 @@ document.querySelectorAll('.demo-link').forEach(link => {
 function openDemoPopup(projectId) {
     currentProject = projectsData[projectId];
     currentImageIndex = 0;
-    
+
     if (!currentProject) return;
-    
+
     // Mettre à jour le contenu
     demoTitle.textContent = currentProject.title;
     demoDesc.textContent = currentProject.description;
-    
+
     // Créer les thumbnails
     demoThumbnails.innerHTML = '';
     currentProject.images.forEach((image, index) => {
@@ -523,10 +494,10 @@ function openDemoPopup(projectId) {
         thumb.addEventListener('click', () => showImage(index));
         demoThumbnails.appendChild(thumb);
     });
-    
+
     // Afficher la première image
     showImage(0);
-    
+
     // Ouvrir le popup
     demoOverlay.classList.add('active');
     demoPopup.classList.add('active');
@@ -605,6 +576,4 @@ document.addEventListener('keydown', (e) => {
             break;
     }
 });
-
-console.log('Demo popups system loaded!');
 

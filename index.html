@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Thibaud</title>
+    <title>Portfolio - Thibaud Masurel | Développeur Web</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio de Thibaud Masurel, développeur web en formation à Zone01 Rouen. Spécialisé en Go, JavaScript et développement web moderne. À la recherche d'une alternance.">
+    <meta name="keywords" content="développeur web, Go, JavaScript, Zone01, Rouen, alternance, portfolio, backend, API REST, algorithmes">
+    <meta name="author" content="Thibaud Masurel">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thmasurel.github.io/tmasurel.github.io/">
+    <meta property="og:title" content="Thibaud Masurel - Développeur Web">
+    <meta property="og:description" content="Portfolio de Thibaud Masurel, développeur web en formation à Zone01 Rouen. Spécialisé en Go, JavaScript et développement web moderne.">
+    <meta property="og:image" content="https://thmasurel.github.io/tmasurel.github.io/images/photo-01.JPG">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://thmasurel.github.io/tmasurel.github.io/">
+    <meta name="twitter:title" content="Thibaud Masurel - Développeur Web">
+    <meta name="twitter:description" content="Portfolio de Thibaud Masurel, développeur web en formation à Zone01 Rouen. Spécialisé en Go, JavaScript et développement web moderne.">
+    <meta name="twitter:image" content="https://thmasurel.github.io/tmasurel.github.io/images/photo-01.JPG">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://thmasurel.github.io/tmasurel.github.io/">
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <script>
-        // Debug: show loading screen info
-        window.addEventListener('load', () => {
-            const loading = document.getElementById('loading-screen');
-            console.log('Loading screen element:', loading);
-            console.log('Loading screen styles:', window.getComputedStyle(loading));
-        });
-    </script>
 </head>
 <body>
 
@@ -27,7 +42,7 @@
                     <li><a href="#formation">Formation</a></li>
                     <li><a href="#projects">Projets</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="cv_thibaud_masurel.pdf" target="_blank" class="cv-link">CV</a></li>
+                    <li><a href="cv_thibaud_masurel.pdf" target="_blank" rel="noopener noreferrer" class="cv-link">CV</a></li>
                 </ul>
             </div>
         </nav>
@@ -51,7 +66,7 @@
                 <h2>À propos de moi</h2>
                 <div class="about-content">
                     <div class="about-photo-container">
-                        <img src="images/photo-01.JPG" alt="Thibaud Masurel - Développeur Web" class="profile-photo" />
+                        <img src="images/photo-01.JPG" alt="Thibaud Masurel - Développeur Web" class="profile-photo" loading="lazy" decoding="async" />
                     </div>
                     <div class="about-info">
                         <div class="about-text">
@@ -130,7 +145,7 @@
                     
                     <div class="project-card" data-category="go web api">
                         <div class="project-image">
-                            <img src="images/groupie-tracker.png" alt="Groupie Tracker Screenshot" />
+                            <img src="images/groupie-tracker.png" alt="Groupie Tracker Screenshot" loading="lazy" decoding="async" />
                         </div>
                         <div class="project-content">
                             <h3>Groupie Tracker</h3>
@@ -142,7 +157,7 @@
                                 <span class="tech-tag">API REST</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/ThMasurel/groupie-tracker" class="project-link">Code</a>
+                                <a href="https://github.com/ThMasurel/groupie-tracker" target="_blank" rel="noopener noreferrer" class="project-link">Code</a>
                                 <a href="#" class="project-link demo-link" data-project="groupie-tracker">Demo</a>
                             </div>
                         </div>
@@ -150,7 +165,7 @@
 
                     <div class="project-card" data-category="go web">
                         <div class="project-image">
-                            <img src="images/ascii-art.png" alt="ASCII Art Web Screenshot" />
+                            <img src="images/ascii-art.png" alt="ASCII Art Web Screenshot" loading="lazy" decoding="async" />
                         </div>
                         <div class="project-content">
                             <h3>ASCII Art Web</h3>
@@ -162,7 +177,7 @@
                                 <span class="tech-tag">Templates</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/ThMasurel/ascii-art-web" class="project-link">Code</a>
+                                <a href="https://github.com/ThMasurel/ascii-art-web" target="_blank" rel="noopener noreferrer" class="project-link">Code</a>
                                 <a href="#" class="project-link demo-link" data-project="ascii-art">Demo</a>
                             </div>
                         </div>
@@ -170,7 +185,7 @@
 
                     <div class="project-card" data-category="go algorithms">
                         <div class="project-image">
-                            <img src="images/lem-in.png" alt="Lem-in Screenshot" />
+                            <img src="images/lem-in.png" alt="Lem-in Screenshot" loading="lazy" decoding="async" />
                         </div>
                         <div class="project-content">
                             <h3>Lem-in</h3>
@@ -182,7 +197,7 @@
                                 <span class="tech-tag">Graph Theory</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/ThMasurel/lem-in" class="project-link">Code</a>
+                                <a href="https://github.com/ThMasurel/lem-in" target="_blank" rel="noopener noreferrer" class="project-link">Code</a>
                                 <a href="#" class="project-link demo-link" data-project="lem-in">Demo</a>
                             </div>
                         </div>
@@ -200,8 +215,8 @@
                     <p>Vous souhaitez collaborer ou en savoir plus ?</p>
                     <div class="contact-links">
                         <a href="mailto:thibaud.masurel@gmail.com" class="contact-link"><span class="contact-text">Email</span></a>
-                        <a href="https://www.linkedin.com/in/thibaud-masurel-90b960380/" class="contact-link"><span class="contact-text">LinkedIn</span></a>
-                        <a href="https://github.com/ThMasurel" class="contact-link"><span class="contact-text">GitHub</span></a>
+                        <a href="https://www.linkedin.com/in/thibaud-masurel-90b960380/" target="_blank" rel="noopener noreferrer" class="contact-link"><span class="contact-text">LinkedIn</span></a>
+                        <a href="https://github.com/ThMasurel" target="_blank" rel="noopener noreferrer" class="contact-link"><span class="contact-text">GitHub</span></a>
                     </div>
                 </div>
             </div>

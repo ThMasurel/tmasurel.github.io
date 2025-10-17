@@ -50,6 +50,18 @@
     box-sizing: border-box;
 }
 
+/* Accessibilité : Focus visible pour navigation clavier */
+*:focus-visible {
+    outline: 3px solid var(--accent-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Supprimer l'outline par défaut seulement si focus-visible est supporté */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
 html {
     scroll-behavior: smooth;
     overscroll-behavior: none;
@@ -132,6 +144,11 @@ header {
     color: var(--accent-primary);
 }
 
+.nav-menu a:focus-visible {
+    outline: 3px solid var(--accent-primary);
+    outline-offset: 4px;
+}
+
 .cv-link {
     background: none;
     color: var(--text-primary) !important;
@@ -153,8 +170,8 @@ header {
 =================================================================== */
 
 #hero {
-    background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), 
-                      url('https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)),
+                      url('https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=70');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -228,6 +245,11 @@ header {
     color: var(--accent-primary);
     border-color: var(--accent-primary);
     transform: translateY(-2px);
+}
+
+.cta-button:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
 }
 
 
@@ -525,6 +547,11 @@ section h2::after {
     color: white;
 }
 
+.project-link:focus-visible {
+    outline: 3px solid var(--accent-primary);
+    outline-offset: 4px;
+}
+
 
 /* ===================================================================
    9. SECTION CONTACT
@@ -568,6 +595,11 @@ section h2::after {
 .contact-link:hover {
     background: var(--accent-secondary);
     transform: translateY(-2px);
+}
+
+.contact-link:focus-visible {
+    outline: 3px solid var(--accent-primary);
+    outline-offset: 4px;
 }
 
 
