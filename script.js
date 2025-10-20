@@ -385,7 +385,7 @@ const demoPopup = document.getElementById('demo-popup');
 const demoOverlay = document.getElementById('demo-overlay');
 const demoClose = document.getElementById('demo-close');
 const demoTitle = document.getElementById('demo-title');
-const demoMainImg = document.getElementById('demo-main-img');
+const demoMainImgContainer = document.querySelector('.demo-main-image');
 const demoThumbnails = document.querySelector('.demo-thumbnails');
 const demoCounter = document.getElementById('demo-counter');
 const demoDesc = document.getElementById('demo-desc');
@@ -425,20 +425,12 @@ const projectsData = {
         description: 'Convertisseur de texte en art ASCII avec interface web moderne. Propose 3 styles de polices différents (standard, shadow, thinkertoy) avec preview en temps réel, sélection de couleurs et téléchargement du résultat. Backend développé en Go avec serveur HTTP.',
         images: [
             {
-                src: 'images/ascii-art-1.png',
+                src: 'images/ascii-art.png',
                 alt: 'Interface principale ASCII Art Web'
-            },
-            {
-                src: 'images/ascii-art-2.png',
-                alt: 'Génération avec différents styles'
             },
             {
                 src: 'images/ascii-art-3.png',
                 alt: 'Sélection de couleurs'
-            },
-            {
-                src: 'images/ascii-art-4.png',
-                alt: 'Résultat avec style shadow'
             },
             {
                 src: 'images/ascii-art-5.png',
@@ -466,12 +458,15 @@ const projectsData = {
 let currentProject = null;
 let currentImageIndex = 0;
 
-// Gestion des clics sur les liens Demo
-document.querySelectorAll('.demo-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const projectId = link.getAttribute('data-project');
-        openDemoPopup(projectId);
+// Initialiser les liens demo au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+    // Gestion des clics sur les liens Demo
+    document.querySelectorAll('.demo-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const projectId = link.getAttribute('data-project');
+            openDemoPopup(projectId);
+        });
     });
 });
 
@@ -488,10 +483,17 @@ function openDemoPopup(projectId) {
 
     // Créer les thumbnails
     demoThumbnails.innerHTML = '';
-    currentProject.images.forEach((image, index) => {
+    currentProject.images.forEach((media, index) => {
         const thumb = document.createElement('div');
         thumb.className = `demo-thumbnail ${index === 0 ? 'active' : ''}`;
-        thumb.innerHTML = `<img src="${image.src}" alt="${image.alt}">`;
+
+        // Créer le bon type d'élément pour le thumbnail
+        if (media.type === 'video') {
+            thumb.innerHTML = `<video src="${media.src}" muted playsinline style="width:100%;height:100%;object-fit:cover;"></video>`;
+        } else {
+            thumb.innerHTML = `<img src="${media.src}" alt="${media.alt}">`;
+        }
+
         thumb.addEventListener('click', () => showImage(index));
         demoThumbnails.appendChild(thumb);
     });
@@ -513,9 +515,8 @@ function showImage(index) {
     currentImageIndex = index;
     const media = currentProject.images[index];
 
-    // Créer l'élément approprié (image ou vidéo)
-    const mainImageContainer = demoMainImg.parentElement;
-    mainImageContainer.innerHTML = '';
+    // Vider le container
+    demoMainImgContainer.innerHTML = '';
 
     if (media.type === 'video') {
         // Créer un élément vidéo
@@ -530,14 +531,14 @@ function showImage(index) {
         video.style.width = '100%';
         video.style.height = 'auto';
         video.style.borderRadius = '8px';
-        mainImageContainer.appendChild(video);
+        demoMainImgContainer.appendChild(video);
     } else {
         // Créer un élément image
         const img = document.createElement('img');
         img.src = media.src;
         img.alt = media.alt;
         img.id = 'demo-main-img';
-        mainImageContainer.appendChild(img);
+        demoMainImgContainer.appendChild(img);
     }
 
     // Mettre à jour les thumbnails
@@ -555,6 +556,13 @@ function showImage(index) {
 
 // Fonction pour fermer le popup
 function closeDemoPopup() {
+    // Arrêter les vidéos en cours
+    const videos = demoMainImgContainer.querySelectorAll('video');
+    videos.forEach(video => {
+        video.pause();
+        video.src = '';
+    });
+
     demoOverlay.classList.remove('active');
     demoPopup.classList.remove('active');
     document.body.style.overflow = '';
@@ -569,21 +577,21 @@ demoOverlay.addEventListener('click', closeDemoPopup);
 
 // Navigation avec les boutons
 demoPrevBtn.addEventListener('click', () => {
-    if (currentImageIndex > 0) {
+    if (currentProject && currentImageIndex > 0) {
         showImage(currentImageIndex - 1);
     }
 });
 
 demoNextBtn.addEventListener('click', () => {
-    if (currentImageIndex < currentProject.images.length - 1) {
+    if (currentProject && currentImageIndex < currentProject.images.length - 1) {
         showImage(currentImageIndex + 1);
     }
 });
 
 // Navigation avec le clavier
 document.addEventListener('keydown', (e) => {
-    if (!demoPopup.classList.contains('active')) return;
-    
+    if (!demoPopup.classList.contains('active') || !currentProject) return;
+
     switch(e.key) {
         case 'Escape':
             closeDemoPopup();
@@ -601,3 +609,104 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// ===== CARROUSEL AUTOMATIQUE POUR LES PROJETS =====
+class ProjectCarousel {
+    constructor(carouselElement) {
+        this.carousel = carouselElement;
+        this.slides = this.carousel.querySelectorAll('.carousel-slide');
+        this.indicators = this.carousel.querySelectorAll('.indicator');
+        this.currentIndex = 0;
+        this.autoplayInterval = null;
+        this.isPaused = false;
+
+        this.init();
+    }
+
+    init() {
+        // Cliquer sur les indicateurs
+        this.indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                this.goToSlide(index);
+            });
+        });
+
+        // Pause au hover sur la carte
+        const projectCard = this.carousel.closest('.project-card');
+        if (projectCard) {
+            projectCard.addEventListener('mouseenter', () => {
+                this.pause();
+            });
+
+            projectCard.addEventListener('mouseleave', () => {
+                this.resume();
+            });
+        }
+
+        // Démarrer l'autoplay
+        this.startAutoplay();
+    }
+
+    goToSlide(index) {
+        // Retirer la classe active de tous les slides et indicateurs
+        this.slides.forEach(slide => slide.classList.remove('active'));
+        this.indicators.forEach(ind => ind.classList.remove('active'));
+
+        // Ajouter la classe active au slide et indicateur ciblé
+        this.slides[index].classList.add('active');
+        this.indicators[index].classList.add('active');
+
+        // Mettre à jour l'index
+        this.currentIndex = index;
+
+        // Si c'est une vidéo, la jouer
+        const currentSlide = this.slides[index];
+        if (currentSlide.tagName === 'VIDEO') {
+            currentSlide.play().catch(err => {
+                console.log('Autoplay vidéo bloqué:', err);
+            });
+        }
+    }
+
+    nextSlide() {
+        const nextIndex = (this.currentIndex + 1) % this.slides.length;
+        this.goToSlide(nextIndex);
+    }
+
+    startAutoplay() {
+        this.autoplayInterval = setInterval(() => {
+            if (!this.isPaused) {
+                this.nextSlide();
+            }
+        }, 4000); // Change d'image toutes les 4 secondes
+    }
+
+    pause() {
+        this.isPaused = true;
+    }
+
+    resume() {
+        this.isPaused = false;
+    }
+
+    destroy() {
+        if (this.autoplayInterval) {
+            clearInterval(this.autoplayInterval);
+        }
+    }
+}
+
+// Initialiser tous les carrousels au chargement de la page
+const carouselInstances = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.project-image.carousel');
+
+    carousels.forEach(carousel => {
+        carouselInstances.push(new ProjectCarousel(carousel));
+    });
+
+    // Nettoyer les intervalles quand on quitte la page
+    window.addEventListener('beforeunload', () => {
+        carouselInstances.forEach(instance => instance.destroy());
+    });
+});
