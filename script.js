@@ -455,8 +455,9 @@ const projectsData = {
                 alt: 'Visualisation du réseau Lem-in'
             },
             {
-                src: 'images/lem-in-1.png',
-                alt: 'Algorithme de pathfinding en action'
+                src: 'images/lem-in.webm',
+                alt: 'Algorithme de pathfinding en action',
+                type: 'video'
             }
         ]
     }
@@ -508,22 +509,45 @@ function openDemoPopup(projectId) {
 // Fonction pour afficher une image
 function showImage(index) {
     if (!currentProject || index < 0 || index >= currentProject.images.length) return;
-    
+
     currentImageIndex = index;
-    const image = currentProject.images[index];
-    
-    // Mettre à jour l'image principale
-    demoMainImg.src = image.src;
-    demoMainImg.alt = image.alt;
-    
+    const media = currentProject.images[index];
+
+    // Créer l'élément approprié (image ou vidéo)
+    const mainImageContainer = demoMainImg.parentElement;
+    mainImageContainer.innerHTML = '';
+
+    if (media.type === 'video') {
+        // Créer un élément vidéo
+        const video = document.createElement('video');
+        video.src = media.src;
+        video.alt = media.alt;
+        video.id = 'demo-main-img';
+        video.controls = true;
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.style.width = '100%';
+        video.style.height = 'auto';
+        video.style.borderRadius = '8px';
+        mainImageContainer.appendChild(video);
+    } else {
+        // Créer un élément image
+        const img = document.createElement('img');
+        img.src = media.src;
+        img.alt = media.alt;
+        img.id = 'demo-main-img';
+        mainImageContainer.appendChild(img);
+    }
+
     // Mettre à jour les thumbnails
     document.querySelectorAll('.demo-thumbnail').forEach((thumb, i) => {
         thumb.classList.toggle('active', i === index);
     });
-    
+
     // Mettre à jour le compteur
     demoCounter.textContent = `${index + 1} / ${currentProject.images.length}`;
-    
+
     // Mettre à jour les boutons navigation
     demoPrevBtn.disabled = index === 0;
     demoNextBtn.disabled = index === currentProject.images.length - 1;
