@@ -13,7 +13,7 @@
     --bg-primary: #ffffff;
     --bg-secondary: #f8f9fa;
     --text-primary: #2c3e50;
-    --text-secondary: #7f8c8d;
+    --text-secondary: #5f6c6d;
     --accent-primary: #f05f40;
     --accent-secondary: #e74c3c;
     
@@ -1417,4 +1417,14 @@ footer {
    FIN DU FICHIER CSS
 =================================================================== */
 
+
+
+/* ===================================================================
+   13. KEYFRAMES
+=================================================================== */
+
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
 
